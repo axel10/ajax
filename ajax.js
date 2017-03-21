@@ -3,7 +3,7 @@
 
         //编码数据
         function setData() {
-        	//设置对象的遍码
+            //设置对象的遍码
             function setObjData(data, parentName) {
                 function encodeData(name, value, parentName) {
                     var items = [];
@@ -66,7 +66,7 @@
                 document.body.removeChild(script);
                 success(data);
             }
-            script.src = url + (url.indexOf("?") > -1 ? "&" : "?") + "callback=" + callback;
+            script.src = url + (url.indexOf("?") > -1 ? "&" : "?") + cbName + "=" + callback;
             script.type = "text/javascript";
             document.body.appendChild(script);
             setTime(callback, script);
@@ -148,10 +148,11 @@
             contentType = options.contentType || "", //请求头
             dataType = options.dataType || "", //请求的类型
             async = options.async === undefined ? true : options.async, //是否异步，默认为true.
-            timeOut = options.timeOut, //超时时间。 
+            timeOut = options.timeOut, //超时时间。
             before = options.before || function() {}, //发送之前执行的函数
             error = options.error || function() {}, //错误执行的函数
-            success = options.success || function() {}; //请求成功的回调函数
+            success = options.success || function() {}, //请求成功的回调函数
+            cbName = options.callback || "callback";
         var timeout_bool = false, //是否请求超时
             timeout_flag = null, //超时标识
             xhr = null; //xhr对角
@@ -164,4 +165,4 @@
         }
     }
     window.ajax = ajax;
-  })(window);
+})(window);
